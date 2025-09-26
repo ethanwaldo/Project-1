@@ -19,7 +19,10 @@ Inventory::Inventory(const std::vector<std::vector<Item>>& items, Item* equipped
 
 // Copy constructor
 Inventory::Inventory(const Inventory& rhs)
-    : inventory_grid_(rhs.inventory_grid_), equipped_(nullptr), weight_(0.0f), item_count_(0) {}
+    : inventory_grid_(rhs.inventory_grid_),
+      equipped_(rhs.equipped_ ? new Item(*rhs.equipped_) : nullptr),
+      weight_(rhs.weight_),
+      item_count_(rhs.item_count_) {}
 
 // Move constructor
 Inventory::Inventory(Inventory&& rhs) noexcept
