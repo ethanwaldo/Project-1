@@ -1,3 +1,9 @@
+/*
+    Student: Ethan Waldo
+    EMPLID: 23274836
+    Project 1
+    Player.cpp
+*/
 #include "Player.hpp"
 
 // Constructor
