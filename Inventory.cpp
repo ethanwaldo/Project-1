@@ -4,16 +4,12 @@
     Project 1
     Inventory.cpp
 */
-
 #include "Inventory.hpp"
 #include <numeric>
 
 // Constructor
 Inventory::Inventory(const std::vector<std::vector<Item>>& items, Item* equipped)
     : inventory_grid_(items), equipped_(equipped), weight_(0.0f), item_count_(0) {
-    if (equipped) {
-        equipped_ = equipped;
-    }
     calculateInitialState();
 }
 
@@ -60,7 +56,6 @@ Inventory& Inventory::operator=(Inventory&& other) noexcept {
         equipped_ = other.equipped_;
         weight_ = other.weight_;
         item_count_ = other.item_count_;
-
         other.equipped_ = nullptr;
         other.weight_ = 0.0f;
         other.item_count_ = 0;
@@ -73,7 +68,7 @@ Item* Inventory::getEquipped() const {
     return equipped_;
 }
 
-const std::vector<std::vector<Item>>& Inventory::getItems() const {
+std::vector<std::vector<Item>> Inventory::getItems() const {
     return inventory_grid_;
 }
 
@@ -85,7 +80,7 @@ size_t Inventory::getCount() const {
     return item_count_;
 }
 
-const Item& Inventory::at(size_t row, size_t col) const {
+Item Inventory::at(size_t row, size_t col) const {
     if (row >= inventory_grid_.size() || col >= inventory_grid_[0].size()) {
         throw std::out_of_range("Inventory::at() - Index out of range");
     }
@@ -105,25 +100,19 @@ void Inventory::discardEquipped() {
 
 bool Inventory::store(size_t row, size_t col, const Item& pickup) {
     if (row >= inventory_grid_.size() || col >= inventory_grid_[0].size()) {
-        return false;
+        throw std::out_of_range("Row or column index is out of bounds");
     }
-
     Item& current_item = inventory_grid_[row][col];
-
     if (current_item.getType() != ItemType::NONE) {
         return false;
     }
-
     current_item = pickup;
-
     if (pickup.getType() != ItemType::NONE) {
         weight_ += pickup.getWeight();
         item_count_++;
     }
-
     return true;
 }
-
 
 // --- Private Helper Functions ---
 void Inventory::calculateInitialState() {

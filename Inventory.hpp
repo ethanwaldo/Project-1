@@ -10,6 +10,7 @@
 #include "Item.hpp"
 #include <vector>
 #include <stdexcept>
+
 #include <utility>
 
 class Inventory {
@@ -26,10 +27,10 @@ public:
 
     // Accessors
     Item* getEquipped() const;
-    const std::vector<std::vector<Item>>& getItems() const;
+    std::vector<std::vector<Item>> getItems() const;
     float getWeight() const;
     size_t getCount() const;
-    const Item& at(size_t row, size_t col) const;
+    Item at(size_t row, size_t col) const;
 
     // Modifiers
     void equip(Item* itemToEquip);

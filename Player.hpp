@@ -25,7 +25,7 @@ public:
     Player& operator=(Player&& other) noexcept;
 
     // Accessors
-    const std::string& getName() const;
+    std::string getName() const;
     Inventory& getInventoryRef();
 
 private:

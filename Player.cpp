@@ -4,7 +4,6 @@
     Project 1
     Player.cpp
 */
-
 #include "Player.hpp"
 
 // Constructor
@@ -38,7 +37,7 @@ Player& Player::operator=(Player&& other) noexcept {
 }
 
 // --- Accessors ---
-const std::string& Player::getName() const {
+std::string Player::getName() const {
     return name_;
 }
 

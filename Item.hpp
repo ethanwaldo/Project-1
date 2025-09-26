@@ -1,10 +1,3 @@
-/*
-    Student: Ethan Waldo
-    EMPLID: 23274836
-    Project 1
-    Item.hpp
-*/
-
 #pragma once
 
 enum class ItemType {
