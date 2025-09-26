@@ -1,10 +1,3 @@
-/*
-    Student: Ethan Waldo
-    EMPLID: 23274836
-    Project 1
-    Player.hpp
-*/
-
 #pragma once
 
 #include "Inventory.hpp"
@@ -16,7 +9,7 @@ public:
     Player(const std::string& name, const Inventory& inventory = Inventory());
 
     // Big Five
-    ~Player() = default;
+    ~Player();
     Player(const Player& other);
     Player(Player&& other);
     Player& operator=(const Player& other);

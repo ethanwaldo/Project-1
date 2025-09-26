@@ -1,27 +1,22 @@
-/*
-    Student: Ethan Waldo
-    EMPLID: 23274836
-    Project 1
-    Inventory.hpp
-*/
-
 #pragma once
 
-// #include "Item.hpp"
 #include <vector>
-#include <stdexcept>
+#include <cstddef>
+
+class Item;  // forward declaration
 
 class Inventory {
 public:
     // Constructor
-    Inventory(const std::vector<std::vector<Item>>& items = std::vector<std::vector<Item>>(10, std::vector<Item>(10)), Item* equipped = nullptr);
+    Inventory(const std::vector<std::vector<Item>>& items = std::vector<std::vector<Item>>(10, std::vector<Item>(10)), 
+              Item* equipped = nullptr);
 
     // Big Five
-    ~Inventory(); 
-    Inventory(const Inventory& other); 
-    Inventory(Inventory&& other); 
-    Inventory& operator=(const Inventory& other); 
-    Inventory& operator=(Inventory&& other); 
+    ~Inventory();
+    Inventory(const Inventory& other);
+    Inventory(Inventory&& other);
+    Inventory& operator=(const Inventory& other);
+    Inventory& operator=(Inventory&& other);
 
     // Accessors
     Item* getEquipped() const;
