@@ -26,7 +26,10 @@ Inventory::Inventory(const Inventory& rhs)
 
 // Move constructor
 Inventory::Inventory(Inventory&& rhs) noexcept
-    : inventory_grid_(std::move(rhs.inventory_grid_)), equipped_(rhs.equipped_), weight_(rhs.weight_), item_count_(rhs.item_count_) {
+    : inventory_grid_(std::move(rhs.inventory_grid_)),
+      equipped_(rhs.equipped_),
+      weight_(rhs.weight_),
+      item_count_(rhs.item_count_) {
     rhs.equipped_ = nullptr;
     rhs.weight_ = 0.0f;
     rhs.item_count_ = 0;
