@@ -45,7 +45,3 @@ const std::string& Player::getName() const {
 Inventory& Player::getInventoryRef() {
     return inventory_;
 }
-
-const Inventory& Player::getInventoryRef() const {
-    return inventory_;
-}

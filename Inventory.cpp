@@ -2,7 +2,7 @@
     Student: Ethan Waldo
     EMPLID: 23274836
     Project 1
-    Inentory.cpp
+    Inventory.cpp
 */
 
 #include "Inventory.hpp"
@@ -12,7 +12,7 @@
 Inventory::Inventory(const std::vector<std::vector<Item>>& items, Item* equipped)
     : inventory_grid_(items), equipped_(equipped), weight_(0.0f), item_count_(0) {
     if (equipped) {
-        equipped_ = new Item(*equipped);
+        equipped_ = equipped;
     }
     calculateInitialState();
 }

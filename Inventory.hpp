@@ -2,7 +2,7 @@
     Student: Ethan Waldo
     EMPLID: 23274836
     Project 1
-    Inentory.hpp
+    Inventory.hpp
 */
 
 #pragma once
@@ -10,6 +10,7 @@
 #include "Item.hpp"
 #include <vector>
 #include <stdexcept>
+#include <utility>
 
 class Inventory {
 public:

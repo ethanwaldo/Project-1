@@ -8,7 +8,9 @@
 #pragma once
 
 #include "Inventory.hpp"
+
 #include <string>
+#include <utility>
 
 class Player {
 public:
@@ -25,7 +27,6 @@ public:
     // Accessors
     const std::string& getName() const;
     Inventory& getInventoryRef();
-    const Inventory& getInventoryRef() const;
 
 private:
     Inventory inventory_;
