@@ -38,10 +38,14 @@ Inventory::Inventory(Inventory&& rhs) noexcept
 // Copy assignment
 Inventory& Inventory::operator=(const Inventory& rhs) {
     if (this != &rhs) {
-        inventory_grid_ = rhs.inventory_grid_;
+        // Clean up current resources
+        delete equipped_;
         equipped_ = nullptr;
-        weight_ = 0.0f;
-        item_count_ = 0;
+        
+        inventory_grid_ = rhs.inventory_grid_;
+        equipped_ = rhs.equipped_ ? new Item(*rhs.equipped_) : nullptr;
+        weight_ = rhs.weight_;
+        item_count_ = rhs.item_count_;
     }
     return *this;
 }
@@ -49,6 +53,10 @@ Inventory& Inventory::operator=(const Inventory& rhs) {
 // Move assignment
 Inventory& Inventory::operator=(Inventory&& rhs) noexcept {
     if (this != &rhs) {
+        // Clean up current resources
+        delete equipped_;
+        equipped_ = nullptr;
+        
         inventory_grid_ = std::move(rhs.inventory_grid_);
         equipped_ = rhs.equipped_;
         weight_ = rhs.weight_;
