@@ -1,11 +1,40 @@
 #include "Player.hpp"
 
-Player::Player(const std::string&, const Inventory&) {}
-Player::~Player() {}
-Player::Player(const Player&) {}
-Player::Player(Player&&) {}
-Player& Player::operator=(const Player&) { return *this; }
-Player& Player::operator=(Player&&) { return *this; }
+// Constructor
+Player::Player(const std::string& name, const Inventory& inventory)
+    : inventory_(inventory), name_(name) {}
 
-std::string Player::getName() const { return ""; }
-Inventory& Player::getInventoryRef() { return inventory_; }
+// Copy constructor
+Player::Player(const Player& rhs)
+    : inventory_(rhs.inventory_), name_(rhs.name_) {}
+
+// Move constructor
+Player::Player(Player&& rhs) noexcept
+    : inventory_(std::move(rhs.inventory_)), name_(std::move(rhs.name_)) {}
+
+// Copy assignment
+Player& Player::operator=(const Player& rhs) {
+    if (this != &rhs) {
+        inventory_ = rhs.inventory_;
+        name_ = rhs.name_;
+    }
+    return *this;
+}
+
+// Move assignment
+Player& Player::operator=(Player&& rhs) noexcept {
+    if (this != &rhs) {
+        inventory_ = std::move(rhs.inventory_);
+        name_ = std::move(rhs.name_);
+    }
+    return *this;
+}
+
+// Accessors
+std::string Player::getName() const {
+    return name_;
+}
+
+Inventory& Player::getInventoryRef() {
+    return inventory_;
+}

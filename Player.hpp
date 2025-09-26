@@ -1,25 +1,28 @@
-#pragma once
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#include "Inventory.hpp"
 #include <string>
+#include "Inventory.hpp"
 
 class Player {
+private:
+    Inventory inventory_;
+    std::string name_;
+
 public:
     // Constructor
-    Player(const std::string& name, const Inventory& inventory = Inventory());
+    Player(const std::string& name = "", const Inventory& inventory = Inventory());
 
     // Big Five
-    ~Player();
-    Player(const Player& other);
-    Player(Player&& other);
-    Player& operator=(const Player& other);
-    Player& operator=(Player&& other);
+    Player(const Player& rhs);
+    Player(Player&& rhs) noexcept;
+    Player& operator=(const Player& rhs);
+    Player& operator=(Player&& rhs) noexcept;
+    ~Player() = default;
 
     // Accessors
     std::string getName() const;
     Inventory& getInventoryRef();
-
-private:
-    Inventory inventory_;
-    std::string name_;
 };
+
+#endif
