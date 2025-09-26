@@ -110,7 +110,7 @@ Item Inventory::at(size_t row, size_t col) const {
 
 bool Inventory::store(size_t row, size_t col, const Item& pickup) {
     if (row >= inventory_grid_.size() || col >= inventory_grid_[0].size()) {
-        throw std::out_of_range("Inventory::store() - Index out of range");
+        return false;
     }
     
     Item& current_item = inventory_grid_[row][col];
