@@ -8,9 +8,7 @@
 #pragma once
 
 #include "Inventory.hpp"
-
 #include <string>
-#include <utility>
 
 class Player {
 public:
@@ -20,9 +18,9 @@ public:
     // Big Five
     ~Player() = default;
     Player(const Player& other);
-    Player(Player&& other) noexcept;
+    Player(Player&& other);
     Player& operator=(const Player& other);
-    Player& operator=(Player&& other) noexcept;
+    Player& operator=(Player&& other);
 
     // Accessors
     std::string getName() const;

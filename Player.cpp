@@ -8,15 +8,18 @@
 
 // Constructor
 Player::Player(const std::string& name, const Inventory& inventory)
-    : inventory_(inventory), name_(name) {}
+    : inventory_(inventory), name_(name) {
+}
 
 // Copy Constructor
 Player::Player(const Player& other)
-    : inventory_(other.inventory_), name_(other.name_) {}
+    : inventory_(other.inventory_), name_(other.name_) {
+}
 
 // Move Constructor
-Player::Player(Player&& other) noexcept
-    : inventory_(std::move(other.inventory_)), name_(std::move(other.name_)) {}
+Player::Player(Player&& other)
+    : inventory_(std::move(other.inventory_)), name_(std::move(other.name_)) {
+}
 
 // Copy Assignment
 Player& Player::operator=(const Player& other) {
@@ -28,7 +31,7 @@ Player& Player::operator=(const Player& other) {
 }
 
 // Move Assignment
-Player& Player::operator=(Player&& other) noexcept {
+Player& Player::operator=(Player&& other) {
     if (this != &other) {
         inventory_ = std::move(other.inventory_);
         name_ = std::move(other.name_);
@@ -36,7 +39,7 @@ Player& Player::operator=(Player&& other) noexcept {
     return *this;
 }
 
-// --- Accessors ---
+// Accessors
 std::string Player::getName() const {
     return name_;
 }

@@ -11,19 +11,17 @@
 #include <vector>
 #include <stdexcept>
 
-#include <utility>
-
 class Inventory {
 public:
     // Constructor
     Inventory(const std::vector<std::vector<Item>>& items = std::vector<std::vector<Item>>(10, std::vector<Item>(10)), Item* equipped = nullptr);
 
     // Big Five
-    ~Inventory(); // Destructor
-    Inventory(const Inventory& other); // Copy
-    Inventory(Inventory&& other) noexcept; // Move
-    Inventory& operator=(const Inventory& other); // Copy Assignment
-    Inventory& operator=(Inventory&& other) noexcept; // Move Assignment
+    ~Inventory(); 
+    Inventory(const Inventory& other); 
+    Inventory(Inventory&& other); 
+    Inventory& operator=(const Inventory& other); 
+    Inventory& operator=(Inventory&& other); 
 
     // Accessors
     Item* getEquipped() const;
@@ -38,9 +36,6 @@ public:
     bool store(size_t row, size_t col, const Item& pickup);
 
 private:
-    void calculateInitialState();
-    void clear();
-
     std::vector<std::vector<Item>> inventory_grid_;
     Item* equipped_;
     float weight_;
