@@ -1,9 +1,3 @@
-/*
-    Student: Ethan Waldo
-    EMPLID: 23274836
-    Project 1
-    Player.hpp
-*/
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 

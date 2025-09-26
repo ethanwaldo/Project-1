@@ -1,11 +1,6 @@
-/*
-    Student: Ethan Waldo
-    EMPLID: 23274836
-    Project 1
-    Inventory.hpp
-*/
 #ifndef INVENTORY_HPP
 #define INVENTORY_HPP
+
 #include <vector>
 #include <cstddef>
 #include <stdexcept>
@@ -17,14 +12,10 @@ private:
     Item* equipped_;
     float weight_;
     size_t item_count_;
-    
-    // Private helper functions
-    void calculateInitialState();
-    void clear();
 
 public:
     // Constructor
-    Inventory(const std::vector<std::vector<Item>>& items = std::vector<std::vector<Item>>(10, std::vector<Item>(10)), Item* equipped = nullptr);
+    Inventory(const std::vector<std::vector<Item>>& items = {}, Item* equipped = nullptr);
 
     // Big Five
     Inventory(const Inventory& rhs);
