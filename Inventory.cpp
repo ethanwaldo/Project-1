@@ -70,6 +70,7 @@ Inventory& Inventory::operator=(Inventory&& rhs) noexcept {
 
 // Destructor
 Inventory::~Inventory() {
+    delete equipped_;
     equipped_ = nullptr;
 }
 
@@ -79,10 +80,12 @@ Item* Inventory::getEquipped() const {
 }
 
 void Inventory::equip(Item* itemToEquip) {
+    // Does not deallocate the original
     equipped_ = itemToEquip;
 }
 
 void Inventory::discardEquipped() {
+    delete equipped_;
     equipped_ = nullptr;
 }
 
@@ -99,9 +102,26 @@ size_t Inventory::getCount() const {
 }
 
 Item Inventory::at(size_t row, size_t col) const {
-    return Item();
+    if (row >= inventory_grid_.size() || col >= inventory_grid_[0].size()) {
+        throw std::out_of_range("Inventory::at() - Index out of range");
+    }
+    return inventory_grid_[row][col];
 }
 
 bool Inventory::store(size_t row, size_t col, const Item& pickup) {
-    return false;
+    if (row >= inventory_grid_.size() || col >= inventory_grid_[0].size()) {
+        throw std::out_of_range("Inventory::store() - Index out of range");
+    }
+    
+    Item& current_item = inventory_grid_[row][col];
+    if (current_item.getType() != ItemType::NONE) {
+        return false;
+    }
+    
+    current_item = pickup;
+    if (pickup.getType() != ItemType::NONE) {
+        weight_ += pickup.getWeight();
+        item_count_++;
+    }
+    return true;
 }
