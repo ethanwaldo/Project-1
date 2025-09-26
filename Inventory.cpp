@@ -2,7 +2,20 @@
 
 // Constructor
 Inventory::Inventory(const std::vector<std::vector<Item>>& items, Item* equipped)
-    : inventory_grid_(items), equipped_(equipped), weight_(0.0f), item_count_(0) {}
+    : inventory_grid_(items), equipped_(equipped), weight_(0.0f), item_count_(0) {
+    if (equipped) {
+        equipped_ = new Item(*equipped);
+    }
+    // Calculate initial weight and item count
+    for (const auto& row : inventory_grid_) {
+        for (const auto& item : row) {
+            if (item.getType() != ItemType::NONE) {
+                weight_ += item.getWeight();
+                item_count_++;
+            }
+        }
+    }
+}
 
 // Copy constructor
 Inventory::Inventory(const Inventory& rhs)
